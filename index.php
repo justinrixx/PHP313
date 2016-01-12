@@ -55,19 +55,23 @@
 
         <div class="col s12 m4">
           <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
-            <h5 class="center">User Experience Focused</h5>
+            <h2 class="center light-blue-text"><i class="material-icons">ac_unit</i></h2>
+            <h5 class="center">Canadian missionary</h5>
 
-            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
+            <p class="light">I served in the Canada Edmonton Mission from 2012 to 2014. It was cold, but a
+            great time of my life. It's true, Canadians are very polite, and they say "sorry" a whole lot.</p>
+            <p class="light">All jokes aside, Canada is a really great place, at least in the summer :)</p>
           </div>
         </div>
 
         <div class="col s12 m4">
           <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
-            <h5 class="center">Easy to work with</h5>
+            <h2 class="center light-blue-text"><i class="material-icons">person_add</i></h2>
+            <h5 class="center">Taken</h5>
 
-            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
+            <p class="light">My wife and I have been happily married since May. I've got to say, married
+            life is way better than single life! My wife works as a nurse full-time to put me through
+            school. She naturally has a degree in nursing.</p>
           </div>
         </div>
       </div>
