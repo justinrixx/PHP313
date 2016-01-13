@@ -5,6 +5,10 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+
+  <!-- javascript functions called by the page -->
+  <script src="js/index.js"></script>
+
   <title>Justin Ricks</title>
 
   <!-- CSS
@@ -95,10 +99,12 @@
           <h5 class="white-text">Android Apps</h5>
           <p class="grey-text text-lighten-4">If you're interested in looking at some of the Android apps
           I've built myself and with others, check these out.</p>
+          <a class="waves-effect waves-light btn" id="app-button" onclick="showAppLinks()">
+            <i class="material-icons right">android</i>See my apps</a>
 
 
         </div>
-        <div class="col l3 s12">
+        <div class="col l3 s12 hidden" id="app-links">
           <ul>
             <li><a class="white-text" href="https://play.google.com/store/apps/details?id=com.gmail.rixx.justin.envelopebudget">Cash Caddy</a></li>
             <li><a class="white-text" href="https://play.google.com/store/apps/details?id=com.gmail.app.studios.on.game">Game On</a></li>

@@ -1,5 +1,9 @@
 /* Custom Stylesheet */
 
+.hidden {
+	visibility: hidden;
+}
+
 .icon-block {
   padding: 0 15px;
 }
