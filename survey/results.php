@@ -11,6 +11,14 @@ $answers = array
   array("Spring", "Summer", "Fall", "Winter")
   );
 
+$questions = array
+  ( "Favorite color scheme",
+    "Favorite language",
+    "Favorite operating system",
+    "Favorite pizza",
+    "Favorite season"
+  );
+
 $FILENAME = "results.txt";
 
 // the results
@@ -69,10 +77,52 @@ if (file_exists($FILENAME)) {
         echo '</div>';
       } else {
         // draw some pretty pie charts
-
         echo '<div class="row center">';
         echo '<h5 class="header col s12 light">The results are in!</h5>';
         echo '</div>';
+
+        // output divs to hold the pie charts. one for each question
+        $i = 0;
+        foreach ($results as $row) {
+          echo '<div id="pie' . $i . '" style="width: 900px; height: 500px;"></div>';
+          $i++;
+        }
+
+        // writing javascript in php . . . :)
+        echo '<script type="text/javascript">';
+        echo "google.charts.load('current', {'packages':['corechart']});\n
+        google.charts.setOnLoadCallback(drawChart);\n
+        function drawChart() {\n
+          var data;\n
+          var chart;\n
+          var options;\n";
+
+        $i = 0;
+        foreach ($results as $row) {
+
+          // initialize the chart data
+          echo "data = google.visualization.arrayToDataTable([\n";
+          echo "['Question', 'Answers'],\n";
+
+          $j = 0;
+          foreach ($row as $answer) {
+            echo "[\"" . $answers[$i][$j] ."\", " . $results[$i][$j] . "],\n";
+            $j++;
+          }
+
+          echo "]);\n";
+
+          echo "options = {title: '" . htmlspecialchars($questions[$i]) . "'};\n";
+
+          echo "chart = new google.visualization.PieChart(document.getElementById('pie" . $i . "'));\n";
+
+          echo "chart.draw(data, options);\n";
+
+          $i++;
+        }
+
+        echo "}\n
+        </script>\n";
       }
 
       ?>

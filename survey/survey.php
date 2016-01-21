@@ -5,7 +5,7 @@ $COOKIE_NAME = "quiz_done";
 // check for cookie -- redirect if necessary
 if (isset($_COOKIE[$COOKIE_NAME])) {
   header('Location: results.php');
-} 
+}
 
 ?>
 
