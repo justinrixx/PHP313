@@ -1,7 +1,12 @@
 <?php
-// TODO check for cookie
-// redirect if necessary
-session_start();
+
+$COOKIE_NAME = "quiz_done";
+
+// check for cookie -- redirect if necessary
+if (isset($_COOKIE[$COOKIE_NAME])) {
+  header('Location: results.php');
+} 
+
 ?>
 
 <!DOCTYPE html>
@@ -36,101 +41,101 @@ session_start();
       <!-- Question 1 -->
       <h5 class="light">Favorite color scheme</h5>
       <p>
-        <input class="with-gap" name="q1" type="radio" id="rainbow" value="Rainbow" checked />
+        <input class="with-gap" name="q1" type="radio" id="rainbow" value="0" checked />
         <label for="rainbow">Rainbow</label>
       </p>
       <p>
-        <input class="with-gap" name="q1" type="radio" id="team-colors" value="My team's colors" />
+        <input class="with-gap" name="q1" type="radio" id="team-colors" value="1" />
         <label for="team-colors">My team's colors</label>
       </p>
       <p>
-        <input class="with-gap" name="q1" type="radio" id="light-dark" value="Some light, some dark" />
+        <input class="with-gap" name="q1" type="radio" id="light-dark" value="2" />
         <label for="light-dark">Some light, some dark</label>
       </p>
       <p>
-        <input class="with-gap" name="q1" type="radio" id="black" value="Black" />
+        <input class="with-gap" name="q1" type="radio" id="black" value="3" />
         <label for="black">Black</label>
       </p> <br />
 
       <!-- Question 2 -->
       <h5 class="light">Favorite language</h5>
       <p>
-        <input class="with-gap" name="q2" type="radio" id="english" value="English" checked />
+        <input class="with-gap" name="q2" type="radio" id="english" value="0" checked />
         <label for="english">English</label>
       </p>
       <p>
-        <input class="with-gap" name="q2" type="radio" id="c" value="C" />
+        <input class="with-gap" name="q2" type="radio" id="c" value="1" />
         <label for="c">C</label>
       </p>
       <p>
-        <input class="with-gap" name="q2" type="radio" id="haskell" value="Haskell" />
+        <input class="with-gap" name="q2" type="radio" id="haskell" value="2" />
         <label for="haskell">Haskell</label>
       </p>
       <p>
-        <input class="with-gap" name="q2" type="radio" id="mission" value="My mission language" />
+        <input class="with-gap" name="q2" type="radio" id="mission" value="3" />
         <label for="mission">My mission language</label>
       </p> <br />
 
       <!-- Question 3 -->
       <h5 class="light">Favorite operating system</h5>
       <p>
-        <input class="with-gap" name="q3" type="radio" id="windows" value="Windows" checked />
+        <input class="with-gap" name="q3" type="radio" id="windows" value="0" checked />
         <label for="windows">Windows</label>
       </p>
       <p>
-        <input class="with-gap" name="q3" type="radio" id="mac" value="Mac" />
+        <input class="with-gap" name="q3" type="radio" id="mac" value="1" />
         <label for="mac">Mac</label>
       </p>
       <p>
-        <input class="with-gap" name="q3" type="radio" id="linux" value="Linux" />
+        <input class="with-gap" name="q3" type="radio" id="linux" value="2" />
         <label for="linux">Linux</label>
       </p>
       <p>
-        <input class="with-gap" name="q3" type="radio" id="emacs" value="Emacs" />
+        <input class="with-gap" name="q3" type="radio" id="emacs" value="3" />
         <label for="emacs">Emacs</label>
       </p> <br />
 
       <!-- Question 4 -->
       <h5 class="light">Favorite pizza</h5>
       <p>
-        <input class="with-gap" name="q4" type="radio" id="pepperoni" value="Pepperoni" checked />
+        <input class="with-gap" name="q4" type="radio" id="pepperoni" value="0" checked />
         <label for="pepperoni">Pepperoni</label>
       </p>
       <p>
-        <input class="with-gap" name="q4" type="radio" id="hawaiian" value="Hawaiian" />
+        <input class="with-gap" name="q4" type="radio" id="hawaiian" value="1" />
         <label for="hawaiian">Hawaiian</label>
       </p>
       <p>
-        <input class="with-gap" name="q4" type="radio" id="anchovies" value="Anchovies" />
+        <input class="with-gap" name="q4" type="radio" id="anchovies" value="2" />
         <label for="anchovies">Anchovies</label>
       </p>
       <p>
-        <input class="with-gap" name="q4" type="radio" id="mushroom" value="Mushroom" />
+        <input class="with-gap" name="q4" type="radio" id="mushroom" value="3" />
         <label for="mushroom">Mushroom</label>
       </p> <br />
 
       <!-- Question 5 -->
       <h5 class="light">Favorite season</h5>
       <p>
-        <input class="with-gap" name="q5" type="radio" id="pepperoni" value="Pepperoni" checked />
-        <label for="pepperoni">Pepperoni</label>
+        <input class="with-gap" name="q5" type="radio" id="spring" value="0" checked />
+        <label for="spring">Spring</label>
       </p>
       <p>
-        <input class="with-gap" name="q5" type="radio" id="hawaiian" value="Hawaiian" />
-        <label for="hawaiian">Hawaiian</label>
+        <input class="with-gap" name="q5" type="radio" id="summer" value="1" />
+        <label for="summer">Summer</label>
       </p>
       <p>
-        <input class="with-gap" name="q5" type="radio" id="anchovies" value="Anchovies" />
-        <label for="anchovies">Anchovies</label>
+        <input class="with-gap" name="q5" type="radio" id="fall" value="2" />
+        <label for="fall">Fall</label>
       </p>
       <p>
-        <input class="with-gap" name="q5" type="radio" id="mushroom" value="Mushroom" />
-        <label for="mushroom">Mushroom</label>
+        <input class="with-gap" name="q5" type="radio" id="winter" value="3" />
+        <label for="winter">Winter</label>
       </p> <br />
 
       <br />
       <!-- Submit Button -->
-      <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+      <button class="btn waves-effect waves-light" type="submit">Submit
         <i class="material-icons right">send</i>
       </button>
     </form>
