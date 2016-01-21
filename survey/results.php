@@ -72,15 +72,19 @@ if (file_exists($FILENAME)) {
 
       // show no results if there are none
       if (!$exists) {
-        echo '<div class="row center">';
-        echo '<h5 class="header col s12 light">There appear to be no results at this time</h5>';
-        echo '</div>';
+        ?>
+        <div class="row center">
+        <h5 class="header col s12 light">There appear to be no results at this time</h5>
+        </div>
+        <?php
       } else {
         // draw some pretty pie charts
-        echo '<div class="row center">';
-        echo '<h5 class="header col s12 light">The results are in!</h5>';
-        echo '</div>';
+        ?>
+        <div class="row center">
+        <h5 class="header col s12 light">The results are in!</h5>
+        </div>
 
+        <?php
         // output divs to hold the pie charts. one for each question
         $i = 0;
         foreach ($results as $row) {
@@ -88,15 +92,17 @@ if (file_exists($FILENAME)) {
           $i++;
         }
 
-        // writing javascript in php . . . :)
-        echo '<script type="text/javascript">';
-        echo "google.charts.load('current', {'packages':['corechart']});\n
-        google.charts.setOnLoadCallback(drawChart);\n
-        function drawChart() {\n
-          var data;\n
-          var chart;\n
-          var options;\n";
+        ?>
+        
+        <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+          var data;
+          var chart;
+          var options;
 
+        <?php
         $i = 0;
         foreach ($results as $row) {
 

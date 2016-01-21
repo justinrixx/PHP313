@@ -47,6 +47,7 @@ $json = json_encode($results);
 $file = fopen($FILENAME, "w");
 
 fwrite($file, $json);
+fclose($file);
 
 // set a cookie
 setcookie($COOKIE_NAME, "value", time() + (86400 * 30), "/"); // 86400 = 1 day
