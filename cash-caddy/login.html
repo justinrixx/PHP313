@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <script src="js/login.js"></script>
+
+  <title>Log In</title>
+
+  <!-- CSS
+       I'm using CSS from the Materialize project in order to make my site conform to
+       material design -->
+
+  <!-- This one is for the material design icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- For the main materialize stuff -->
+  <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+
+<body>
+
+  <div class="section" id="index-banner">
+    <div class="container">
+
+      <h1 class="header center orange-text">Welcome</h1>
+        <div class="row center">
+          <h5 class="header col s12 light">Go ahead and sign in</h5>
+        </div>
+
+      <form action="login.php" method="POST" onsubmit="return validateForm()">
+        <div class="row">
+          <div class="input-field col s6">
+            <input id="email" name="email" type="email" class="validate">
+            <label for="email">Email</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <input id="password" name="password" type="password">
+            <label for="password">Password</label>
+          </div>
+        </div>
+        <div class="row">
+          <button class="btn waves-effect waves-light" type="submit">Sign In
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="../js/materialize.js"></script>
+
+</body>
+</html>
