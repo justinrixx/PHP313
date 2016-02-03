@@ -5,9 +5,8 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <script src="js/login.js"></script>
 
-  <title>Log In</title>
+  <title>Create Account</title>
 
   <!-- CSS
        I'm using CSS from the Materialize project in order to make my site conform to
@@ -17,7 +16,6 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- For the main materialize stuff -->
   <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="../css/style.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
@@ -25,9 +23,9 @@
   <div class="section" id="index-banner">
     <div class="container">
 
-      <h1 class="header center orange-text">Welcome</h1>
+      <h1 class="header center orange-text">Register</h1>
         <div class="row center">
-          <h5 class="header col s12 light">Go ahead and sign in</h5>
+          <h5 class="header col s12 light">It's free!</h5>
         </div>
 
       <form action="login.php" method="POST" onsubmit="return validateForm()">
@@ -44,12 +42,15 @@
           </div>
         </div>
         <div class="row">
-          <button class="btn waves-effect waves-light" type="submit">Sign In
+          <div class="input-field col s6">
+            <input id="password2" name="password2" type="password">
+            <label for="password2">Retype Password</label>
+          </div>
+        </div>
+        <div class="row">
+          <button class="btn waves-effect waves-light" type="submit">Register
             <i class="material-icons right">send</i>
           </button>
-          <a href="new-user.html" class="btn waves-effect waves-light">Register
-            <i class="material-icons right">account_box</i>
-          </a>
         </div>
       </form>
     </div>
