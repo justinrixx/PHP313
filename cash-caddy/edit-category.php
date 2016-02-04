@@ -14,18 +14,20 @@ if (isset($_GET['id'])) {
 
 require "load-db.php";
 $db = loadDatabase();
-      
-// get the category
-$stmt = $db->prepare('SELECT * FROM category WHERE id=:id');
-$stmt->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
-$stmt->execute();
-$categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
-$category = $categories[0];
 
-// make sure the user owns the requested category
-if ($_SESSION['userId'] != $category['user_id']) {
-  header('Location: home.php');
-  die();
+if ($edit) {
+  // get the category
+  $stmt = $db->prepare('SELECT * FROM category WHERE id=:id');
+  $stmt->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
+  $stmt->execute();
+  $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $category = $categories[0];
+
+  // make sure the user owns the requested category
+  if ($_SESSION['userId'] != $category['user_id']) {
+    header('Location: home.php');
+    die();
+  }
 }
 ?>
 
