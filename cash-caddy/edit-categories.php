@@ -77,7 +77,7 @@ if (!isset($_SESSION['userId'])) {
 
   <!-- Floating Action Button -->
   <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-    <a class="btn-floating btn-large waves-effect waves-light orange" href="#">
+    <a class="btn-floating btn-large waves-effect waves-light orange" href="edit-category.php">
       <i class="large material-icons">add</i>
     </a>
   </div>
