@@ -1,3 +1,34 @@
+<?php
+// if the user isn't logged in, send them back to the login page
+session_start();
+if (!isset($_SESSION['userId'])) {
+  header('Location: login.html');
+  die();
+}
+
+// should I pre-fill the form?
+$edit = false;
+if (isset($_GET['id'])) {
+  $edit = true;
+}
+
+require "load-db.php";
+$db = loadDatabase();
+      
+// get the category
+$stmt = $db->prepare('SELECT * FROM category WHERE id=:id');
+$stmt->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
+$stmt->execute();
+$categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$category = $categories[0];
+
+// make sure the user owns the requested category
+if ($_SESSION['userId'] != $category['user_id']) {
+  header('Location: home.php');
+  die();
+}
+?>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -23,9 +54,13 @@
     <div class="section">
 
       <form>
+        <!-- Pass the ID to the form processor. -1 means a new category, not an edit -->
+        <input type="hidden" name="id" 
+          <?php if($edit){echo 'value="' . $category['id'] . '"';}else{echo 'value="-1"';}?>>
         <div class="row">
           <div class="input-field col s6">
-            <input id="category_name" name="category_name" type="text">
+            <input id="category_name" name="category_name" type="text" 
+              <?php if($edit){echo 'value="' . $category['name'] . '"';} ?>>
             <label for="category_name">Category Name</label>
           </div>
 
@@ -39,12 +74,14 @@
         </div>
         <div class="row">
           <div class="input-field col s6">
-            <input id="amount" name="amount" type="number" min="0.01" step="0.01">
+            <input id="amount" name="amount" type="number" min="0.01" step="0.01"
+              <?php if($edit){echo 'value="'; printf("%.2f", $category['amount'] / 100.0); echo '"';} ?>>
             <label for="amount">Amount</label>
           </div>
           <div class="col s6">
             <label for="next_refresh">Starting</label>
-            <input id="next_refresh" name="next_refresh" type="date" class="datepicker">
+            <input id="next_refresh" name="next_refresh" type="date" class="datepicker"
+              <?php if($edit){echo 'value="' . $category['last_refresh'] . '"';} ?>>
           </div>
         </div>
         <div class="row">

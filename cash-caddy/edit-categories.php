@@ -1,3 +1,11 @@
+<?php
+// if the user isn't logged in, send them back to the login page
+session_start();
+if (!isset($_SESSION['userId'])) {
+  header('Location: login.html');
+}
+?>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -32,27 +40,34 @@
         </thead>
 
         <tbody>
+        <?php
+        require "load-db.php";
+        $db = loadDatabase();
+      
+        // get all the user's categories
+        $stmt = $db->prepare('SELECT * FROM category WHERE user_id=:id');
+        $stmt->bindValue(':id', $_SESSION['userId'], PDO::PARAM_INT);
+        $stmt->execute();
+        $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        <!-- TODO make dynamic -->
-          <tr>
-            <td>Grocery</td>
-            <td>$120.00</td>
-            <td>Monthly</td>
-            <td><a href="#"><i class="material-icons right grey-text">edit</i></a></td>
-          </tr>
-          <tr>
-            <td>Gas</td>
-            <td>$37.76</td>
-            <td>Monthly</td>
-            <td><a href="#"><i class="material-icons right grey-text">edit</i></a></td>
-          </tr>
-          <tr>
-            <td>Other</td>
-            <td>$7.00</td>
-            <td>Every 2 Weeks</td>
-            <td><a href="#"><i class="material-icons right grey-text">edit</i></a></td>
-          </tr>
-        <!-- End dynamic -->
+        // output the category as a row
+        foreach ($categories as $category) {
+          echo "<tr><td>" . $category['name'] . "</td><td>";
+          printf("$%.2f", $category['amount'] / 100.0);
+          echo "</td><td>";
+          if ($category['refresh_code'] == 0) {
+            echo "Monthly";
+          } else if ($category['refresh_code'] == 1) {
+            echo "Every 2 Weeks";
+          } else {
+            echo "SHOULDN'T BE HERE";
+            die();
+          }
+          echo '</td><td><a href="edit-category.php?id=' . $category['id'] . '">'
+               . '<i class="material-icons right grey-text">edit</i></a></td></tr>';
+        }
+
+        ?>
 
         </tbody>
       </table>

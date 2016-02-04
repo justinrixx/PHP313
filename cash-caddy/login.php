@@ -2,6 +2,7 @@
 // check if the user logged in correctly
 if (!isset($_POST['email']) || !isset($_POST['password'])) {
 	header('Location: login.html');
+	die();
 }
 
 // now check the database for the user record
