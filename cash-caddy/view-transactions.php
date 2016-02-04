@@ -63,7 +63,7 @@ if ($_SESSION['userId'] != $category['user_id']) {
         <tbody>
 
         <?php
-        $stmt = $db->prepare('SELECT * FROM transaction WHERE category_id=:id');
+        $stmt = $db->prepare('SELECT `date`,amount,comments FROM transaction WHERE category_id=:id');
         $stmt->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
         $stmt->execute();
         $transactions = $stmt->fetchAll(PDO::FETCH_ASSOC);

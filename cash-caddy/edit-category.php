@@ -12,12 +12,14 @@ if (isset($_GET['id'])) {
   $edit = true;
 }
 
-require "load-db.php";
-$db = loadDatabase();
+//require "load-db.php";
+//$db = loadDatabase();
+require "db-queries.php";
 
 if ($edit) {
+
   // get the category
-  $stmt = $db->prepare('SELECT * FROM category WHERE id=:id');
+  $stmt = $db->prepare('SELECT id,name,amount,last_refresh,user_id FROM category WHERE id=:id');
   $stmt->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
   $stmt->execute();
   $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);

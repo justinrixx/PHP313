@@ -68,7 +68,7 @@ if (!isset($_SESSION['userId'])) {
           }
 
           // calculate the net in each category
-          $stmt = $db->prepare('SELECT * FROM transaction WHERE category_id=:id AND `date`>=' . $date);
+          $stmt = $db->prepare('SELECT amount FROM transaction WHERE category_id=:id AND `date`>=' . $date);
           $stmt->bindValue(':id', $category['id'], PDO::PARAM_INT);
           $stmt->execute();
           $transactions = $stmt->fetchAll(PDO::FETCH_ASSOC);

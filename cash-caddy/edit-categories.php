@@ -45,7 +45,7 @@ if (!isset($_SESSION['userId'])) {
         $db = loadDatabase();
       
         // get all the user's categories
-        $stmt = $db->prepare('SELECT * FROM category WHERE user_id=:id');
+        $stmt = $db->prepare('SELECT name,amount,refresh_code,id FROM category WHERE user_id=:id');
         $stmt->bindValue(':id', $_SESSION['userId'], PDO::PARAM_INT);
         $stmt->execute();
         $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
