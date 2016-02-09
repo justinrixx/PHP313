@@ -92,6 +92,11 @@ if ($edit) {
           <button class="btn waves-effect waves-light" type="submit">Submit
             <i class="material-icons right">send</i>
           </button>
+          <?php if($edit){ ?>
+          <button class="btn waves-effect waves-light" type="submit" name="delete">Delete
+            <i class="material-icons right">delete</i>
+          </button>
+          <?php } ?>
         </div>
       </form>
 
