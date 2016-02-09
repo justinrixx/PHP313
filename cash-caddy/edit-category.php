@@ -12,9 +12,8 @@ if (isset($_GET['id'])) {
   $edit = true;
 }
 
-//require "load-db.php";
-//$db = loadDatabase();
-require "db-queries.php";
+require "load-db.php";
+$db = loadDatabase();
 
 if ($edit) {
 
@@ -40,6 +39,7 @@ if ($edit) {
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <script src="js/edit-category.js"></script>
 
   <title>Edit Category</title>
 
@@ -57,9 +57,9 @@ if ($edit) {
   <div class="container">
     <div class="section">
 
-      <form>
+      <form action="edit-category-handler.php" method="POST" onsubmit="return validateForm()">
         <!-- Pass the ID to the form processor. -1 means a new category, not an edit -->
-        <input type="hidden" name="id" 
+        <input type="hidden" name="id"
           <?php if($edit){echo 'value="' . $category['id'] . '"';}else{echo 'value="-1"';}?>>
         <div class="row">
           <div class="input-field col s6">
@@ -70,8 +70,8 @@ if ($edit) {
 
           <div class="input-field col s6">
             <select id="refresh_code" name="refresh_code">
-              <option value="0">2 Weeks</option>
-              <option value="1" selected>Month</option>
+              <option value="1">2 Weeks</option>
+              <option value="0" selected>Month</option>
             </select>
             <label for="refresh_code">Refresh Every</label>
           </div>
