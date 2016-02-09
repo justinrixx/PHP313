@@ -67,7 +67,7 @@ if (!isset($_SESSION['userId'])) {
             $date = date('Y-m-d', strtotime("+2 weeks", strtotime($category['last_refresh'])));
           }
 
-          // calculate the net in each category
+          // calculate the net in each category TODO use sum()
           $stmt = $db->prepare('SELECT amount FROM transaction WHERE category_id=:id AND `date`>=' . $date);
           $stmt->bindValue(':id', $category['id'], PDO::PARAM_INT);
           $stmt->execute();

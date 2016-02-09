@@ -1,4 +1,5 @@
 <?php
+
 // check if the user logged in correctly
 if (!isset($_POST['email']) || !isset($_POST['password'])) {
 	header('Location: login.html');
