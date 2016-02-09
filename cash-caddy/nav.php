@@ -4,6 +4,7 @@
     <ul class="right hide-on-med-and-down">
       <li><a href="home.php"><i class="material-icons left">home</i>Home</a></li>
       <li><a href="edit-categories.php"><i class="material-icons left">build</i>Edit Categories</a></li>
+      <li><a href="logout.php"><i class="material-icons left">https</i>Log Out</a></li>
       <!--<li><a href="log.php"><i class="material-icons left">history</i>Log</a></li>-->
     </ul>
   </div>
