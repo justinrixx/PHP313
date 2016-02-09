@@ -47,6 +47,7 @@ if ($edit) {
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <script src="js/edit-transaction.js"></script>
 
   <title><?php if ($edit){echo "Edit";}else{echo "New";} ?> Transaction</title>
 
@@ -64,7 +65,7 @@ if ($edit) {
   <div class="container">
     <div class="section">
 
-      <form>
+      <form action="edit-transaction-handler.php" method="POST" onsubmit="return validateForm()">
         <!-- Pass the ID to the form processor. -1 means a new transaction, not an edit -->
         <input type="hidden" name="id" 
           <?php if($edit){echo 'value="'.$transaction['id'].'"';}else{echo 'value="-1"';} ?> >
@@ -113,6 +114,11 @@ if ($edit) {
           <button class="btn waves-effect waves-light" type="submit">Submit
             <i class="material-icons right">send</i>
           </button>
+          <?php if($edit){ ?>
+          <button class="btn waves-effect waves-light" type="submit" name="delete">Delete
+            <i class="material-icons right">delete</i>
+          </button>
+          <?php } ?>
         </div>
       </form>
 

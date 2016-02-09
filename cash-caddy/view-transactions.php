@@ -63,7 +63,7 @@ if ($_SESSION['userId'] != $category['user_id']) {
         <tbody>
 
         <?php
-        $stmt = $db->prepare('SELECT `date`,amount,comments FROM transaction WHERE category_id=:id');
+        $stmt = $db->prepare('SELECT id,`date`,amount,comments FROM transaction WHERE category_id=:id');
         $stmt->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
         $stmt->execute();
         $transactions = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -71,7 +71,9 @@ if ($_SESSION['userId'] != $category['user_id']) {
         foreach ($transactions as $transaction) {
           echo "<tr><td>" . $transaction['date'] . "</td><td>";
           printf("$%.2f", $transaction['amount'] / 100.0); 
-          echo "</td><td>" . $transaction['comments'] . "</td></tr>";
+          echo "</td><td>" . $transaction['comments'] . "</td><td>" .
+           '<a href="edit-transaction.php?id=' . $transaction['id'] . '">'
+                . '<i class="material-icons right grey-text">edit</i></a></td></tr>';
         }
         ?>
 
