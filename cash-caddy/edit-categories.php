@@ -30,6 +30,21 @@ if (!isset($_SESSION['userId'])) {
   <div class="container">
     <div class="section">
 
+    <?php
+      require "load-db.php";
+      $db = loadDatabase();
+      
+      // get all the user's categories
+      $stmt = $db->prepare('SELECT name,amount,refresh_code,id FROM category WHERE user_id=:id');
+      $stmt->bindValue(':id', $_SESSION['userId'], PDO::PARAM_INT);
+      $stmt->execute();
+      $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+      if (empty($categories)) {
+        echo '<br /><br /><h5 class="header col s12 light center">You don\'t seem to have any categories at this time.</h5>';
+      } else {
+    ?>
+
       <table class="striped centered">
         <thead>
           <tr>
@@ -41,15 +56,7 @@ if (!isset($_SESSION['userId'])) {
 
         <tbody>
         <?php
-        require "load-db.php";
-        $db = loadDatabase();
-      
-        // get all the user's categories
-        $stmt = $db->prepare('SELECT name,amount,refresh_code,id FROM category WHERE user_id=:id');
-        $stmt->bindValue(':id', $_SESSION['userId'], PDO::PARAM_INT);
-        $stmt->execute();
-        $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+        
         // output the category as a row
         foreach ($categories as $category) {
           echo "<tr><td>" . $category['name'] . "</td><td>";
@@ -66,6 +73,8 @@ if (!isset($_SESSION['userId'])) {
           echo '</td><td><a href="edit-category.php?id=' . $category['id'] . '">'
                . '<i class="material-icons right grey-text">edit</i></a></td></tr>';
         }
+
+      } // end of the else from above
 
         ?>
 

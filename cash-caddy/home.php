@@ -35,6 +35,22 @@ if (!isset($_SESSION['userId'])) {
   <div class="container">
     <div class="section">
 
+      <?php
+      require "load-db.php";
+      $db = loadDatabase();
+        
+      // get all the user's categories
+      $stmt = $db->prepare('SELECT * FROM category WHERE user_id=:id');
+      $stmt->bindValue(':id', $_SESSION['userId'], PDO::PARAM_INT);
+      $stmt->execute();
+      $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+      if (empty($categories)) {
+        echo '<br /><br /><h5 class="header col s12 light center">You don\'t seem to have any categories at this time.</h5>';
+      }
+      else {
+      ?>
+
       <table class="striped centered">
         <thead>
           <tr>
@@ -46,18 +62,10 @@ if (!isset($_SESSION['userId'])) {
         <tbody>
 
         <?php
-        require "load-db.php";
-        $db = loadDatabase();
-        
-        // get all the user's categories
-        $stmt = $db->prepare('SELECT * FROM category WHERE user_id=:id');
-        $stmt->bindValue(':id', $_SESSION['userId'], PDO::PARAM_INT);
-        $stmt->execute();
-        $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        foreach ($categories as $category) {
+          foreach ($categories as $category) {
 
-          // default date
+          // default date -- the beginning of time :)
           $date = "1970-01-01";
 
           // what's the refresh code?
@@ -96,6 +104,7 @@ if (!isset($_SESSION['userId'])) {
           echo '<td><a href="view-transactions.php?id=' . $category['id'] . '">'
                 . '<i class="material-icons right grey-text">list</i></a></td></tr>';
         }
+      } // end the else from the above php block
 
         ?>
 
@@ -104,12 +113,18 @@ if (!isset($_SESSION['userId'])) {
     </div>
   </div>
 
+  <?php
+  // only show the floating action button if the user has categories
+  if (!empty($categories)) { ?>
+
   <!-- Floating Action Button -->
   <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
     <a class="btn-floating btn-large waves-effect waves-light orange" href="edit-transaction.php">
       <i class="large material-icons">add</i>
     </a>
   </div>
+
+  <?php } ?>
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
