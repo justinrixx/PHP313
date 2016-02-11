@@ -10,7 +10,7 @@ require "load-db.php";
 $db = loadDatabase();
       
 // get the category
-$stmt = $db->prepare('SELECT user_id FROM category WHERE id=:id');
+$stmt = $db->prepare('SELECT user_id,name FROM category WHERE id=:id');
 $stmt->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
 $stmt->execute();
 $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -50,6 +50,9 @@ if ($_SESSION['userId'] != $category['user_id']) {
 
   <div class="container">
     <div class="section">
+    <h3 class="header col s12 light center">
+      <?php echo "Transactions for " . $category['name'];?>
+    </h3>
 
       <table class="striped centered">
         <thead>

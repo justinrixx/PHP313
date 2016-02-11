@@ -34,6 +34,7 @@ if (!isset($_SESSION['userId'])) {
 
   <div class="container">
     <div class="section">
+    <h3 class="header col s12 light center">Balances</h3>
 
       <?php
       require "load-db.php";

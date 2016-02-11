@@ -64,6 +64,9 @@ if ($edit) {
 
   <div class="container">
     <div class="section">
+    <h3 class="header col s12 light center">
+      <?php if(!isset($_GET['id'])){echo "Add";}else{echo "Edit";} echo " a Transaction";?>
+    </h3>
 
       <form action="edit-transaction-handler.php" method="POST" onsubmit="return validateForm()">
         <!-- Pass the ID to the form processor. -1 means a new transaction, not an edit -->

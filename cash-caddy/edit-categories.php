@@ -29,6 +29,7 @@ if (!isset($_SESSION['userId'])) {
 
   <div class="container">
     <div class="section">
+    <h3 class="header col s12 light center">Edit Your Categories</h3>
 
     <?php
       require "load-db.php";
@@ -56,7 +57,7 @@ if (!isset($_SESSION['userId'])) {
 
         <tbody>
         <?php
-        
+
         // output the category as a row
         foreach ($categories as $category) {
           echo "<tr><td>" . $category['name'] . "</td><td>";
