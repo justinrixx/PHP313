@@ -4,9 +4,10 @@ session_start();
 require "load-db.php";
 $db = loadDatabase();
 $transaction = null;
+$category = null;
 
 // make sure the user owns the category that the transaction applies to
-if ($edit) {
+if ($_POST['id'] != -1) {
         
   // get the transaction
   $stmt = $db->prepare('SELECT * FROM transaction WHERE id=:id');
@@ -82,5 +83,5 @@ if ($edit) {
 	$stmt->execute();
 }
 
-header('Location: home.php');
+header('Location: view-transactions.php?id=' . $category['id']);
 ?>
