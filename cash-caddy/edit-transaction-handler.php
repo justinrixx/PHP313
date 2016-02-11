@@ -83,5 +83,5 @@ if ($edit) {
 	$stmt->execute();
 }
 
-header('Location: view-transactions.php?id=' . $category['id']);
+header('Location: view-transactions.php?id=' . $_POST['category']);
 ?>
