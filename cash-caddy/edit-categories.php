@@ -60,7 +60,7 @@ if (!isset($_SESSION['userId'])) {
 
         // output the category as a row
         foreach ($categories as $category) {
-          echo "<tr><td>" . $category['name'] . "</td><td>";
+          echo "<tr><td>" . htmlspecialchars($category['name']) . "</td><td>";
           printf("$%.2f", $category['amount'] / 100.0);
           echo "</td><td>";
           if ($category['refresh_code'] == 0) {
