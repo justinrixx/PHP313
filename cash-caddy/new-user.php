@@ -21,15 +21,14 @@ if (!empty($rows)) {
 	die();
 }
 
-// TODO hash the password
-$hash = $_POST['password'];
-$salt = "";
+// hash the password
+require "password.php";
+$hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-// Add the user's info TODO
-$stmt = $db->prepare('INSERT INTO user (email, hash, salt) VALUES(:email, :hash, :salt)');
+// Add the user's info
+$stmt = $db->prepare('INSERT INTO user (email, hash) VALUES(:email, :hash)');
 $stmt->bindValue(':email', $_POST['email'], PDO::PARAM_STR);
 $stmt->bindValue(':hash', $hash, PDO::PARAM_STR);
-$stmt->bindValue(':salt', $salt, PDO::PARAM_STR);
 $stmt->execute();
 
 $id = $db->lastInsertId();
