@@ -84,7 +84,7 @@ if ($edit) {
             $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             foreach ($categories as $category) {
-              echo '<option value="' . $category['id'] . '">' . $category['name']
+              echo '<option value="' . $category['id'] . '">' . htmlspecialchars($category['name'])
                    . '</option>';
             }
             ?>
