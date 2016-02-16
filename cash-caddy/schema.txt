@@ -6,8 +6,7 @@ CREATE TABLE user
 (
 id INT PRIMARY KEY AUTO_INCREMENT,
 email VARCHAR(80) NOT NULL UNIQUE,
-hash VARCHAR(20) NOT NULL,
-salt VARCHAR(32) NOT NULL
+hash VARCHAR(255) NOT NULL,
 );
 
 CREATE TABLE category
@@ -31,98 +30,3 @@ category_id INT NOT NULL,
 FOREIGN KEY (category_id) REFERENCES category(id)
 );
 
-
-#################################################
-# Test data
-#################################################
-
-
-INSERT INTO user
-(
-	email
-,	hash
-,	salt
-)
-VALUES
-(
-	'test@test.test'
-,	'test'
-,	'salt'
-);
-
-INSERT INTO category
-(
-	name
-,	amount
-,	refresh_code
-,	last_refresh
-,	user_id
-)
-VALUES
-(
-	'Grocery'
-,	20000
-,	0
-,	'2016-02-01'
-,	1
-);
-
-INSERT INTO transaction
-(
-	amount
-,	date
-,	comments
-,	category_id
-)
-VALUES
-(
-	2304
-,	'2016-02-03'
-,	'Baking supplies'
-,	1
-);
-
-INSERT INTO transaction
-(
-	amount
-,	date
-,	comments
-,	category_id
-)
-VALUES
-(
-	1033
-,	'2016-02-03'
-,	''
-,	1
-);
-
-INSERT INTO transaction
-(
-	amount
-,	date
-,	comments
-,	category_id
-)
-VALUES
-(
-	12312
-,	'2016-02-03'
-,	'Extra virgin olive oil'
-,	1
-);
-
-INSERT INTO transaction
-(
-	amount
-,	date
-,	comments
-,	category_id
-)
-VALUES
-(
-	4512
-,	'2016-02-03'
-,	'Stuff'
-,	1
-);
