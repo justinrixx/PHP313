@@ -87,7 +87,7 @@ if (!isset($_SESSION['userId'])) {
             $total += $transaction['amount'];
           }
 
-          echo "<tr><td>" . $category['name'] . "</td>";
+          echo "<tr><td>" . htmlspecialchars($category['name']) . "</td>";
           echo '<td class="';
 
           $net = ($category['amount'] - $total) / 100.0;

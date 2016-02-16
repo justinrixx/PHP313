@@ -51,7 +51,7 @@ if ($_SESSION['userId'] != $category['user_id']) {
   <div class="container">
     <div class="section">
     <h3 class="header col s12 light center">
-      <?php echo "Transactions for " . $category['name'];?>
+      <?php echo "Transactions for " . htmlspecialchars($category['name']);?>
     </h3>
 
       <table class="striped centered">
@@ -74,7 +74,7 @@ if ($_SESSION['userId'] != $category['user_id']) {
         foreach ($transactions as $transaction) {
           echo "<tr><td>" . $transaction['date'] . "</td><td>";
           printf("$%.2f", $transaction['amount'] / 100.0); 
-          echo "</td><td>" . $transaction['comments'] . "</td><td>" .
+          echo "</td><td>" . htmlspecialchars($transaction['comments']) . "</td><td>" .
            '<a href="edit-transaction.php?id=' . $transaction['id'] . '">'
                 . '<i class="material-icons right grey-text">edit</i></a></td></tr>';
         }
