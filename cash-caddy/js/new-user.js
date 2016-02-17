@@ -13,7 +13,7 @@ function validateForm() {
 		valid = false;
 	}
 	if ($('#password').val() != $('#password').val()) {
-		Materialize.toast('The two passwords do not match.');
+		Materialize.toast('The two passwords do not match.', 3000);
 		valid = false;
 	}
 

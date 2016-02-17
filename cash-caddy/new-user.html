@@ -5,7 +5,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <script src="js/new-users.js"></script>
+  <script src="js/new-user.js"></script>
 
   <title>Create Account</title>
 
@@ -60,6 +60,25 @@
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="../js/materialize.js"></script>
+  <script>
+  $(document).ready(function () {
+    $("#email").blur(function () {
+        $.ajax({
+            type: "POST",
+            url: "testusername.php",
+            data: {
+                email: $('#email').val()
+                },
+            dataType: "json"
+            })
+            .done(function (result) {
+                if (result.available == false) {
+                  Materialize.toast('That email is already in use', 3000);
+                }
+          });
+      });
+  });
+  </script>
 
 </body>
 </html>
