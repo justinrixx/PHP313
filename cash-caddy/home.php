@@ -76,16 +76,14 @@ if (!isset($_SESSION['userId'])) {
             $date = date('Y-m-d', strtotime("+2 weeks", strtotime($category['last_refresh'])));
           }
 
-          // calculate the net in each category TODO use sum()
-          $stmt = $db->prepare('SELECT amount FROM transaction WHERE category_id=:id AND `date`>=' . $date);
+          // get the total by summing
+          $stmt = $db->prepare('SELECT SUM(amount) FROM transaction WHERE category_id=:id AND `date`>=' . $date);
           $stmt->bindValue(':id', $category['id'], PDO::PARAM_INT);
           $stmt->execute();
-          $transactions = $stmt->fetchAll(PDO::FETCH_ASSOC);
+          $sum = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-          $total = 0;
-          foreach ($transactions as $transaction) {
-            $total += $transaction['amount'];
-          }
+          $total = intval($sum[0] ["SUM(amount)"]);
+
 
           echo "<tr><td>" . htmlspecialchars($category['name']) . "</td>";
           echo '<td class="';
