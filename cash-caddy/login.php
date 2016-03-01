@@ -14,7 +14,7 @@ $db = loadDatabase();
 
 // Get the user (if any) with that username
 $stmt = $db->prepare('SELECT hash,id FROM user WHERE email=:email');
-$stmt->bindValue(':email', $_POST['email'], PDO::PARAM_STR);
+$stmt->bindValue(':email', strtolower($_POST['email']), PDO::PARAM_STR);
 $stmt->execute();
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

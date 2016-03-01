@@ -27,7 +27,7 @@ $hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
 // Add the user's info
 $stmt = $db->prepare('INSERT INTO user (email, hash) VALUES(:email, :hash)');
-$stmt->bindValue(':email', $_POST['email'], PDO::PARAM_STR);
+$stmt->bindValue(':email', strtolower($_POST['email']), PDO::PARAM_STR);
 $stmt->bindValue(':hash', $hash, PDO::PARAM_STR);
 $stmt->execute();
 
