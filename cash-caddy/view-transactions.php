@@ -21,6 +21,12 @@ if ($_SESSION['userId'] != $category['user_id']) {
   header('Location: home.php');
   die();
 }
+// now get all the transactions for that category
+$stmt = $db->prepare('SELECT id,`date`,amount,comments FROM transaction WHERE category_id=:id');
+$stmt->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
+$stmt->execute();
+$transactions = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -51,9 +57,11 @@ if ($_SESSION['userId'] != $category['user_id']) {
   <div class="container">
     <div class="section">
     <h3 class="header col s12 light center">
-      <?php echo "Transactions for " . htmlspecialchars($category['name']);?>
+      <?php echo "Transactions for " . htmlspecialchars($category['name']); ?>
     </h3>
 
+      <?php if (!empty($transactions)) {
+        ?>
       <table class="striped centered">
         <thead>
           <tr>
@@ -66,11 +74,6 @@ if ($_SESSION['userId'] != $category['user_id']) {
         <tbody>
 
         <?php
-        $stmt = $db->prepare('SELECT id,`date`,amount,comments FROM transaction WHERE category_id=:id');
-        $stmt->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
-        $stmt->execute();
-        $transactions = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
         foreach ($transactions as $transaction) {
           echo "<tr><td>" . $transaction['date'] . "</td><td>";
           printf("$%.2f", $transaction['amount'] / 100.0); 
@@ -82,6 +85,11 @@ if ($_SESSION['userId'] != $category['user_id']) {
 
         </tbody>
       </table>
+
+      <!-- End the if from above -->
+      <?php } else {
+        echo '<br /><br /><h5 class="header col s12 light center">You don\'t have any transactions for this category at this time.</h5>';
+        } ?>
     </div>
   </div>
 
