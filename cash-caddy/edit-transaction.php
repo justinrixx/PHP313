@@ -133,6 +133,7 @@ if ($edit) {
   <script src="../js/materialize.js"></script>
   <!-- This has to be run to initialize the select -->
   <script>$(document).ready(function(){$('#category').material_select();});</script>
+  <script>$(".button-collapse").sideNav();</script>
 
   </body>
 </html>

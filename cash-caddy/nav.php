@@ -5,7 +5,14 @@
       <li><a href="home.php"><i class="material-icons left">home</i>Home</a></li>
       <li><a href="edit-categories.php"><i class="material-icons left">build</i>Edit Categories</a></li>
       <li><a href="logout.php"><i class="material-icons left">https</i>Log Out</a></li>
-      <!--<li><a href="log.php"><i class="material-icons left">history</i>Log</a></li>-->
     </ul>
+
+    <ul id="nav-mobile" class="side-nav">
+      <li><a href="home.php"><i class="material-icons left">home</i>Home</a></li>
+      <li><a href="edit-categories.php"><i class="material-icons left">build</i>Edit Categories</a></li>
+      <li><a href="logout.php"><i class="material-icons left">https</i>Log Out</a></li>
+    </ul>
+    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+
   </div>
 </nav>
