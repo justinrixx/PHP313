@@ -78,6 +78,7 @@ if (!isset($_SESSION['userId'])) {
 
           //echo '<h1>Date: ' . $date . '</h1>';
 
+          try {
           // get the total by summing
           $stmt = $db->prepare('SELECT SUM(`amount`) FROM `transaction` WHERE `category_id`=:id AND `date`>=' . $date);
           $stmt->bindValue(':id', $category['id'], PDO::PARAM_INT);
@@ -85,6 +86,9 @@ if (!isset($_SESSION['userId'])) {
           $sum = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
           $total = intval($sum[0] ["SUM(amount)"]);
+          } catch (PDOException $Exception) {
+            echo "<h1>PDO Exception!</h1>";
+          }
 
 
           echo "<tr><td>" . htmlspecialchars($category['name']) . "</td>";
