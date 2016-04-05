@@ -76,7 +76,7 @@ if (!isset($_SESSION['userId'])) {
             $date = date('Y-m-d', strtotime("+2 weeks", strtotime($category['last_refresh'])));
           }
 
-          //echo '<h1>Date: ' . $date . '</h1>';
+          echo '<h1>Date: ' . $date . '</h1>';
 
           // get the total by summing
           $stmt = $db->prepare('SELECT SUM(amount) FROM `transaction` WHERE `category_id`=:id AND `date`>=' . strval($date));
