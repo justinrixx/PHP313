@@ -75,10 +75,7 @@ if (!isset($_SESSION['userId'])) {
           } else if ($category['refresh_code'] == 1) { // 1-> every two weeks
             $date = date('Y-m-d', strtotime("+2 weeks", strtotime($category['last_refresh'])));
           }
-
-          echo '<h1>Date: ' . $date . '</h1>';
-          var_dump($date);
-
+          
           // get the total by summing
           $stmt = $db->prepare('SELECT SUM(amount) FROM `transaction` WHERE `category_id`=:id AND `date`>=\'' . $date . '\'');
           $stmt->bindValue(':id', $category['id'], PDO::PARAM_INT);
