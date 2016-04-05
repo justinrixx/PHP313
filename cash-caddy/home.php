@@ -76,8 +76,6 @@ if (!isset($_SESSION['userId'])) {
             $date = date('Y-m-d', strtotime("+2 weeks", strtotime($category['last_refresh'])));
           }
 
-          echo '<h1>DATE: ' . $date . '</h1>';
-
           // get the total by summing
           $stmt = $db->prepare('SELECT SUM(amount) FROM transaction WHERE category_id=:id AND `last_refresh`>=' . $date);
           $stmt->bindValue(':id', $category['id'], PDO::PARAM_INT);
