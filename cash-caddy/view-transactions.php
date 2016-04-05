@@ -22,7 +22,7 @@ if ($_SESSION['userId'] != $category['user_id']) {
   die();
 }
 // now get all the transactions for that category
-$stmt = $db->prepare('SELECT id,`date`,amount,comments FROM transaction WHERE category_id=:id');
+$stmt = $db->prepare('SELECT id,`date`,amount,comments FROM transaction WHERE category_id=:id ORDER BY `date` DESC');
 $stmt->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
 $stmt->execute();
 $transactions = $stmt->fetchAll(PDO::FETCH_ASSOC);
