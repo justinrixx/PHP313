@@ -77,6 +77,7 @@ if (!isset($_SESSION['userId'])) {
 
             // make sure it's in a valid range
             while ($today > $date) {
+            	$last_refresh = date('Y-m-d', strtotime("+1 month", strtotime($last_refresh)));
             	$date = date('Y-m-d', strtotime("+1 month", strtotime($date)));
             }
 
@@ -85,13 +86,14 @@ if (!isset($_SESSION['userId'])) {
 
             // make sure it's in a valid range
             while ($today > $date) {
+            	$last_refresh = date('Y-m-d', strtotime("+1 month", strtotime($last_refresh)));
             	$date = date('Y-m-d', strtotime("+2 weeks", strtotime($date)));
             }
           }
           
           // write the correct last_refresh
           if ($date != $last_refresh) {
-	        $stmt = $db->prepare('UPDATE category SET last_refresh=\'' . $date . '\' WHERE id=' . $category['id']);
+	        $stmt = $db->prepare('UPDATE category SET last_refresh=\'' . $last_refresh . '\' WHERE id=' . $category['id']);
 	        $stmt->execute();
 	      }
 
