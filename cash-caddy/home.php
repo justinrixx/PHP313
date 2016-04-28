@@ -68,12 +68,13 @@ if (!isset($_SESSION['userId'])) {
 
           // default date -- the beginning of time :)
           $date = "1970-01-01";
+          $last_refresh = date('Y-m-d', strtotime($category['last_refresh']));
 
           // what's the refresh code?
           if ($category['refresh_code'] == 0) { // 0-> monthly
-            $date = date('Y-m-d', strtotime("+1 month", strtotime($category['last_refresh'])));
+            $date = date('Y-m-d', strtotime("+1 month", $last_refresh));
           } else if ($category['refresh_code'] == 1) { // 1-> every two weeks
-            $date = date('Y-m-d', strtotime("+2 weeks", strtotime($category['last_refresh'])));
+            $date = date('Y-m-d', strtotime("+2 weeks", $last_refresh));
           }
           
           // get the total by summing
