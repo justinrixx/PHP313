@@ -74,9 +74,9 @@ if (!isset($_SESSION['userId'])) {
 
           // what's the refresh code?
           if ($category['refresh_code'] == 0) { // 0-> monthly
-            $date = date('Y-m-d', strtotime("+1 month", $last_refresh));
+            $date = date('Y-m-d', strtotime("+1 month", strtotime($last_refresh)));
           } else if ($category['refresh_code'] == 1) { // 1-> every two weeks
-            $date = date('Y-m-d', strtotime("+2 weeks", $last_refresh));
+            $date = date('Y-m-d', strtotime("+2 weeks", strtotime($last_refresh)));
           }
           
           // get the total by summing
