@@ -92,7 +92,7 @@ if (!isset($_SESSION['userId'])) {
           }
 
           // write the correct last_refresh
-          if ($last_refresh != category['last_refresh']) {
+          if ($last_refresh != $category['last_refresh']) {
 	        $stmt = $db->prepare('UPDATE category SET last_refresh=\'' . $last_refresh . '\' WHERE id=' . $category['id']);
 	        $stmt->execute();
 	      }
