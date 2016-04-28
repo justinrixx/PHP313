@@ -70,6 +70,8 @@ if (!isset($_SESSION['userId'])) {
           $date = "1970-01-01";
           $last_refresh = date('Y-m-d', strtotime($category['last_refresh']));
 
+          var_dump($last_refresh);
+
           // what's the refresh code?
           if ($category['refresh_code'] == 0) { // 0-> monthly
             $date = date('Y-m-d', strtotime("+1 month", $last_refresh));
