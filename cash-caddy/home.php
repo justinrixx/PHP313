@@ -69,16 +69,32 @@ if (!isset($_SESSION['userId'])) {
           // default date -- the beginning of time :)
           $date = "1970-01-01";
           $last_refresh = date('Y-m-d', strtotime($category['last_refresh']));
-
-          var_dump($last_refresh);
+          $today = date('Y-m-d');
 
           // what's the refresh code?
           if ($category['refresh_code'] == 0) { // 0-> monthly
             $date = date('Y-m-d', strtotime("+1 month", strtotime($last_refresh)));
+
+            // make sure it's in a valid range
+            while ($today > $date) {
+            	$date = date('Y-m-d', strtotime("+1 month", strtotime($date)));
+            }
+
           } else if ($category['refresh_code'] == 1) { // 1-> every two weeks
             $date = date('Y-m-d', strtotime("+2 weeks", strtotime($last_refresh)));
+
+            // make sure it's in a valid range
+            while ($today > $date) {
+            	$date = date('Y-m-d', strtotime("+2 weeks", strtotime($date)));
+            }
           }
           
+          // write the correct last_refresh
+          if ($date != $last_refresh) {
+	        $stmt = $db->prepare('UPDATE category SET last_refresh=\'' . $date . '\' WHERE id=' . $category['id']);
+	        $stmt->execute();
+	      }
+
           // get the total by summing
           $stmt = $db->prepare('SELECT SUM(amount) FROM `transaction` WHERE `category_id`=:id AND `date`>=\'' . $date . '\'');
           $stmt->bindValue(':id', $category['id'], PDO::PARAM_INT);
