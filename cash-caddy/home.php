@@ -90,17 +90,15 @@ if (!isset($_SESSION['userId'])) {
             	$date = date('Y-m-d', strtotime("+2 weeks", strtotime($date)));
             }
           }
-          
-          echo 'UPDATE category SET last_refresh=\'' . $last_refresh . '\' WHERE id=' . $category['id'];
 
           // write the correct last_refresh
-          if ($date != $last_refresh) {
+          if ($last_refresh != category['last_refresh']) {
 	        $stmt = $db->prepare('UPDATE category SET last_refresh=\'' . $last_refresh . '\' WHERE id=' . $category['id']);
 	        $stmt->execute();
 	      }
 
           // get the total by summing
-          $stmt = $db->prepare('SELECT SUM(amount) FROM `transaction` WHERE `category_id`=:id AND `date`>=\'' . $date . '\'');
+          $stmt = $db->prepare('SELECT SUM(amount) FROM `transaction` WHERE `category_id`=:id AND `date`>=\'' . $last_refresh . '\'');
           $stmt->bindValue(':id', $category['id'], PDO::PARAM_INT);
           $stmt->execute();
           $sum = $stmt->fetchAll(PDO::FETCH_ASSOC);
