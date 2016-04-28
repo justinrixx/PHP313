@@ -91,6 +91,8 @@ if (!isset($_SESSION['userId'])) {
             }
           }
           
+          echo 'UPDATE category SET last_refresh=\'' . $last_refresh . '\' WHERE id=' . $category['id'];
+
           // write the correct last_refresh
           if ($date != $last_refresh) {
 	        $stmt = $db->prepare('UPDATE category SET last_refresh=\'' . $last_refresh . '\' WHERE id=' . $category['id']);
